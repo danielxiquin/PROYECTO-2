@@ -86,20 +86,19 @@ namespace Conecta_4
                     }
                     else if (modo == historial)
                     {
-                        Console.Clear();
 
+                        Console.Clear();
                         string tiempo = st.Elapsed.ToString();
-                        bool unos = false;
+
                         histori(gandor, contgan, tiempo);
 
-                        
 
-                        st.Reset();
 
+                        contgan = 0;
                         cont = 0;
                         cont1 = 0;
-                        contgan = 0;
 
+                        st.Reset();
 
 
 
@@ -137,22 +136,24 @@ namespace Conecta_4
 
         public static void histori(string ganador, int turnos, string tiempo)
         {
-           
-          
-
-            for (int i = 9; i >= 1; i--)
+            if (ganador != "" && turnos != 0 && tiempo != "")
             {
-                partidas[i] = partidas[i - 1];
+                for (int i = 9; i >= 1; i--)
+                {
+                    partidas[i] = partidas[i - 1];
+                }
+                partidas[0] = $"|El ganador es: {ganador} | Turnos: {turnos} | Tiempo de partida {tiempo}";
+
             }
 
-            partidas[0] = $"|El ganador es: {ganador} | Turnos: {turnos} | Tiempo de partida {tiempo}";
-
-            
             for (int i = 0; i < 10; i++)
             {
-                Console.WriteLine(partidas[i] ?? "(sin datos)");
+                Console.WriteLine(partidas[i] ?? "(Sin datos)");
+                Thread.Sleep(200);
+
             }
 
+            gandor = "";
         }
 
 
@@ -703,7 +704,6 @@ namespace Conecta_4
                 continuar = true;
 
             }
-
 
 
         }
